@@ -1,0 +1,332 @@
+/* Общие стили для всего документа */ 
+body {
+  background-color: #0C0C0D; /* Цвет фона страницы */
+  color: white; /* Цвет текста на странице */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Подключение первого шрифта */
+@font-face {
+  font-family: 'MyFont1';
+  src: url('./assets/fonts/Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Подключение второго шрифта */
+@font-face {
+  font-family: 'MyFont2';
+  src: url('./assets/fonts/ExtraLight.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Общие стили для всех элементов на странице */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Стили для заголовка */
+.App h1 {
+  font-size: 64px;
+  text-transform: lowercase; /* Все буквы маленькие */
+  line-height: 0.95; /* Плотность строк */
+  font-family: 'MyFont1', sans-serif; /* Применяем шрифт MyFont1 */
+  padding: 20px;
+  margin: 20px;
+  margin-left: 810px;
+}
+
+/* Адаптация для экранов до 1200px */
+@media (max-width: 3440px) {
+  .App h1 {
+    font-size: 48px;
+    margin-left: 40px;
+  }
+}
+
+/* Адаптация для экранов до 768px */
+@media (max-width: 768px) {
+  .App h1 {
+    font-size: 36px;
+    margin-left: 30px;
+  }
+}
+
+/* Адаптация для экранов до 480px */
+@media (max-width: 480px) {
+  .App h1 {
+    font-size: 28px;
+    margin-left: 20px;
+  }
+}
+
+.App h1 .highlight {
+  color: #B292FF;
+  margin-left: 60px;
+}
+
+/* Контейнер для всей сетки карточек */
+.tile-container {
+  position: relative;
+  max-width: 1800px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* Сетка карточек */
+.tile-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  padding: 25px;
+  grid-auto-rows: 1fr;
+}
+
+/* Адаптация сетки для меньших экранов */
+@media (max-width: 1200px) {
+  .tile-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .tile-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .tile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Стили для карточки */
+.tile {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 30px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease; /* Плавный эффект для наведения */
+  background-color: #ddd;
+  border: none;
+}
+
+/* Эффект при наведении на карточку */
+.tile:hover {
+  transform: scale(1.05);
+}
+
+/* Стили для изображения в карточке */
+.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  top: 0;
+  z-index: 0; /* Изображение будет на фоне */
+  transition: filter 0.3s ease; /* Плавное затемнение изображения */
+}
+
+/* Эффект затемнения изображения при наведении */
+.tile:hover img {
+  filter: brightness(0.6); /* Затемняем изображение */
+}
+
+/* Стили для кнопки "Плей" */
+.play-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #B292FF;
+  font-size: 30px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Плавный эффект для увеличения */
+  border: none;
+  z-index: 1; /* Кнопка будет поверх изображения */
+}
+
+/* Треугольник на кнопке "Плей" */
+.play-button:before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 12px solid #B292FF;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-radius: 3px;
+  transform: translateX(1px) translateY(1px);
+  transition: transform 0.3s ease; /* Плавное изменение масштаба треугольника */
+}
+
+
+/* Эффект для треугольника при наведении на карточку */
+.tile:hover .play-button:before {
+  transform: translateX(1px) translateY(1px) scale(1.2); /* Увеличиваем только треугольник */
+}
+
+/* Эффект при наведении на кнопку "Плей" */
+.play-button:hover {
+  background-color: #B292FF; /* Изменение фона на фиолетовый */
+  transform: scale(1.1); /* Увеличиваем кнопку */
+}
+
+/* Контейнер для текста на карточке */
+.title-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  box-shadow: none;
+  border: none;
+  background-clip: padding-box;
+  transition: color 0.3s ease; /* Плавное изменение цвета текста */
+  z-index: 1; /* Текст будет поверх изображения */
+}
+
+/* Заголовок в карточке (верхний текст) */
+.title-container h3 {
+  font-family: 'MyFont1', sans-serif;
+  color: white;
+  font-size: 12px;
+  margin: 0;
+  background-clip: text; /* Применяем эффект к фону */
+  -webkit-background-clip: text; /* Для браузеров, требующих префикс */
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Плавное изменение фона и цвета, а также анимация масштаба */
+  background-image: linear-gradient(45deg, white, white); /* Начальный градиент от белого */
+  transform: scale(1); /* Изначальный размер текста */
+}
+
+/* Дополнительный текст в карточке (нижний текст) */
+.title-container p {
+  font-family: 'MyFont2', sans-serif;
+  color: white;
+  font-size: 12px;
+  margin: 0;
+  padding-top: 16px;
+  transition: transform 0.3s ease; /* Плавное изменение масштаба для нижнего текста */
+}
+
+/* Эффект смены градиента для заголовка при наведении на карточку */
+.tile:hover .title-container h3 {
+  background-image: linear-gradient(45deg, #B292FF, #B292FF); /* Градиент от белого к #B292FF */
+  color: transparent; /* Делаем текст прозрачным для градиента */
+  transform: scale(1.2); /* Увеличиваем верхний текст при наведении */
+}
+
+/* Эффект для нижнего текста при наведении на карточку */
+.tile:hover .title-container p {
+  color: white; /* Цвет текста для нижнего текста остаётся белым */
+  transform: scale(0.8); /* Уменьшаем нижний текст при наведении */
+}
+
+/* Модальное окно для видео */
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+  border-radius: 20px; /* Закругление углов модального окна */
+  padding: 20px; /* Добавляем отступы */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Видео внутри модального окна */
+.video-modal video {
+  max-width: 60%;
+  max-height: 60%;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* Сохраняем пропорции видео */
+  border-radius: 10px; /* Закругляем углы видео */
+  margin: auto; /* Центрируем видео */
+  display: block;
+}
+
+/* Кнопка закрытия видео */
+.video-modal .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  color: white;
+  font-size: 40px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  border: none;
+  font-family: Arial, sans-serif;
+}
+
+/* Эффект при наведении на кнопку закрытия */
+.video-modal .close-button:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #B292FF;
+}
+
+/* Контейнер с логотипом */
+.header-container {
+  display: flex;
+  justify-content: space-between; /* Выравнивание логотипа и кнопки по краям */
+  align-items: center; /* Вертикальное выравнивание */
+  padding: 20px;
+  position: relative;
+}
+
+/* Кнопка для Telegram */
+.telegram-button {
+  background-color: transparent; /* Убираем фон */
+  color: white; /* Цвет текста */
+  padding: 0; /* Убираем отступы */
+  text-decoration: none; /* Убираем подчеркивание */
+  font-family: 'MyFont1'; /* Применяем шрифт MyFont2 */
+  font-size: 16px; /* Размер шрифта */
+  display: inline-block;
+  margin-left: 20px;
+  position: absolute;
+  right: 900px; /* Кнопка будет справа */
+}
+
+.telegram-button:hover {
+  color: #B292FF; /* Цвет текста при наведении */
+}
+
+/* Ограничение ширины текста portfolio */
+.motion-design-portfolio {
+  max-width: 1900px; /* Устанавливаем максимальную ширину */
+  margin: 0 auto; /* Центрируем блок по горизонтали */
+  padding: 0 25px; /* Добавляем отступы по бокам */
+}
+

@@ -1,0 +1,39 @@
+/* Контейнер для всех шейпов */
+.shapes-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40vw; /* Ширина контейнера 100% от ширины экрана */
+  height: 80vh; /* Высота контейнера 100% от высоты экрана */
+  pointer-events: none; /* Чтобы шейпы не мешали взаимодействовать с другими элементами */
+  display: flex; /* Используем flexbox для размещения шейпов */
+  justify-content: center; /* Центрируем шейпы по горизонтали */
+  align-items: center; /* Центрируем шейпы по вертикали */
+  z-index: -1; /* Убираем шейпы за другие элементы */
+}
+
+.header-container {
+  display: flex;
+  justify-content: center; /* Центрируем логотип */
+  padding: 20px;
+}
+
+.logo img {
+  width: 150px; /* Размер логотипа */
+}
+
+/* Стиль для всех шейпов */
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(200px); /* Размытие */
+  pointer-events: none;
+}
+
+
+
+/*
+221, 60, 173, 0.4
+239, 82, 129, 0.4
+120, 34, 242, 0.4
+*/
